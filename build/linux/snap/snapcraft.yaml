@@ -72,7 +72,7 @@ plugs:
   gimp-config:
     interface: personal-files
     write:
-      - ~/.config/GIMP
+      - $HOME/.config/GIMP
 
 parts:
   buildenv:
