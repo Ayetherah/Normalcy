@@ -2109,7 +2109,7 @@ gimp_param_curve_init (GParamSpec *pspec)
  * @flags:   Flags for the property specified.
  *
  * Creates a new #GimpParamSpecCurve specifying a
- * [type@Curvel] property.
+ * [type@Curve] property.
  *
  * See g_param_spec_internal() for details on property names.
  *
