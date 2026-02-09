@@ -6,6 +6,7 @@
     buffer
     channel
     context
+    curve
     debug
     display
     drawable_color

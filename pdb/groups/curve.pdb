@@ -1,0 +1,299 @@
+# GIMP - The GNU Image Manipulation Program
+# Copyright (C) 1995 Spencer Kimball and Peter Mattis
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# "Perlized" from C source by Manish Singh <yosh@gimp.org>
+
+sub curve_new {
+    $blurb = 'Create a new curve.';
+
+    $help = <<'HELP';
+This procedure creates a new curve with the specified @name.
+
+HELP
+
+    &std_pdb_misc;
+
+    @inargs = (
+	{ name => 'name', type => 'string',
+	  desc => 'The curve name' }
+    );
+
+    @outargs = (
+	{ name => 'curve', type => 'curve',
+	  desc => 'The newly created curve' }
+    );
+
+    %invoke = (
+	code => <<'CODE'
+{
+  curve = (GimpCurve *) gimp_curve_new (name);
+
+  if (! curve)
+    success = FALSE;
+}
+CODE
+    );
+}
+
+sub curve_get_n_points {
+    $blurb = 'Returns the number of points in the curve.';
+
+    $help = <<'HELP';
+This procedure returns the number of points in the GimpCurve.
+HELP
+
+    &alxsa_pdb_misc('2026', '3.2');
+
+    @inargs = (
+        { name => 'curve', type => 'curve',
+          desc => 'The curve' }
+    );
+
+    @outargs = (
+        { name => 'n_points', type => 'int32',
+          desc => "The number of points in the curve" }
+    );
+
+
+    %invoke = (
+        code => <<'CODE'
+{
+  n_points = gimp_curve_get_n_points (curve);
+}
+CODE
+    );
+}
+
+sub curve_set_n_samples {
+    $blurb = 'Sets the number of samples in the curve';
+
+    $help = <<'HELP';
+This procedure sets the number of samples in the curve.
+HELP
+
+    &alxsa_pdb_misc('2026', '3.2');
+
+    @inargs = (
+        { name => 'curve', type => 'curve',
+          desc => 'The curve' },
+        { name => 'n_samples', type => '0 <= int32',
+          desc => "The number of samples in the curve" }
+    );
+
+    %invoke = (
+        code => <<'CODE'
+{
+  gimp_curve_set_n_samples (curve, n_samples);
+}
+CODE
+    );
+}
+
+sub curve_get_n_samples {
+    $blurb = 'Returns the number of samples in the curve.';
+
+    $help = <<'HELP';
+This procedure returns the number of samples in the GimpCurve.
+HELP
+
+    &alxsa_pdb_misc('2026', '3.2');
+
+    @inargs = (
+        { name => 'curve', type => 'curve',
+          desc => 'The curve' }
+    );
+
+    @outargs = (
+        { name => 'n_samples', type => 'int32',
+          desc => "The number of samples in the curve" }
+    );
+
+
+    %invoke = (
+        code => <<'CODE'
+{
+  n_samples = gimp_curve_get_n_samples (curve);
+}
+CODE
+    );
+}
+
+sub curve_add_point {
+    $blurb = 'Add a point to the curve';
+
+    $help = <<'HELP';
+This procedure adds a point to the curve.
+HELP
+
+    &alxsa_pdb_misc('2026', '3.2');
+
+    @inargs = (
+        { name => 'curve', type => 'curve',
+          desc => 'The curve' },
+        { name => 'x', type => 'double',
+          desc => "X coordinate on the curve" },
+        { name => 'y', type => 'double',
+          desc => "Y coordinate on the curve" },
+    );
+
+    @outargs = (
+        { name => 'point', type => 'int32',
+          desc => "Point ID" }
+    );
+
+    %invoke = (
+        code => <<'CODE'
+{
+  point = gimp_curve_add_point (curve, x, y);
+
+  if (point < 0)
+    success = FALSE;
+}
+CODE
+    );
+}
+
+sub curve_delete_point {
+    $blurb = 'Remove a point from the curve';
+
+    $help = <<'HELP';
+This procedure removes a point from the curve.
+HELP
+
+    &alxsa_pdb_misc('2026', '3.2');
+
+    @inargs = (
+        { name => 'curve', type => 'curve',
+          desc => 'The curve' },
+        { name => 'point', type => '0 <= int32',
+          desc => "Point ID" }
+    );
+
+    %invoke = (
+        code => <<'CODE'
+{
+  gimp_curve_delete_point (curve, point);
+}
+CODE
+    );
+}
+
+sub curve_set_point {
+    $blurb = 'Update the position of a point on the curve';
+
+    $help = <<'HELP';
+This procedure updates the position of a point on the curve.
+HELP
+
+    &alxsa_pdb_misc('2026', '3.2');
+
+    @inargs = (
+        { name => 'curve', type => 'curve',
+          desc => 'The curve' },
+        { name => 'point', type => 'int32',
+          desc => "Point ID" },
+        { name => 'x', type => 'double',
+          desc => "X coordinate on the curve" },
+        { name => 'y', type => 'double',
+          desc => "Y coordinate on the curve" },
+    );
+
+    %invoke = (
+        code => <<'CODE'
+{
+  gimp_curve_set_point (curve, point, x, y);
+}
+CODE
+    );
+}
+
+
+
+
+sub curve_clear_points {
+    $blurb = 'Removes all points set in the curve';
+
+    $help = <<'HELP';
+This procedure removes all points set in the curve.
+HELP
+
+    &alxsa_pdb_misc('2026', '3.2');
+
+    @inargs = (
+        { name => 'curve', type => 'curve',
+          desc => 'The curve' }
+    );
+
+    %invoke = (
+        code => <<'CODE'
+{
+  gimp_curve_clear_points (curve);
+}
+CODE
+    );
+}
+
+sub curve_is_identity {
+    $blurb = 'Returns where the curve is an identity curve.';
+
+    $help = <<'HELP';
+This procedure returns where the curve is an identity curve.
+HELP
+
+    &alxsa_pdb_misc('2026', '3.2');
+
+    @inargs = (
+        { name => 'curve', type => 'curve',
+          desc => 'The curve' }
+    );
+
+    @outargs = (
+        { name => 'is_identity', type => 'boolean',
+          desc => "Whether the curve is an identity curve." }
+    );
+
+
+    %invoke = (
+        code => <<'CODE'
+{
+  is_identity = gimp_curve_is_identity (curve);
+}
+CODE
+    );
+}
+
+
+@headers = qw("core/gimpcurve.h"
+              "libgimpbase/gimpbase.h");
+
+@procs = qw(curve_new
+            curve_get_n_points
+            curve_set_n_samples
+            curve_get_n_samples
+            curve_add_point
+            curve_delete_point
+            curve_set_point
+            curve_clear_points
+            curve_is_identity);
+
+%exports = (app => [@procs], lib => [@procs]);
+
+$desc = 'Curve';
+$doc_title = 'gimpcurve';
+$doc_short_desc = 'Functions for manipulating curves.';
+$doc_long_desc = 'Functions for manipulating curves.';
+
+1;

@@ -30,6 +30,7 @@ void   register_brushes_procs             (GimpPDB *pdb);
 void   register_buffer_procs              (GimpPDB *pdb);
 void   register_channel_procs             (GimpPDB *pdb);
 void   register_context_procs             (GimpPDB *pdb);
+void   register_curve_procs               (GimpPDB *pdb);
 void   register_debug_procs               (GimpPDB *pdb);
 void   register_display_procs             (GimpPDB *pdb);
 void   register_drawable_color_procs      (GimpPDB *pdb);

@@ -328,6 +328,11 @@ _gimp_gp_param_def_to_param_spec (const GPParamDef *param_def)
         return gimp_param_spec_drawable_filter (name, nick, blurb,
                                                 param_def->meta.m_id.none_ok,
                                                 flags);
+
+      if (! strcmp (param_def->type_name, "GimpParamCurve"))
+        return gimp_param_spec_curve (name, nick, blurb,
+                                      param_def->meta.m_id.none_ok,
+                                      flags);
       break;
 
     case GP_PARAM_DEF_TYPE_ID_ARRAY:
@@ -786,6 +791,10 @@ _gimp_param_spec_to_gp_param_def (GParamSpec *pspec,
       else if (value_type == GIMP_TYPE_PATTERN)
         {
           type_name = "GimpParamPattern";
+        }
+      else if (value_type == GIMP_TYPE_CURVE)
+        {
+          type_name = "GimpParamCurve";
         }
 
       if (type_name)

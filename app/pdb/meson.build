@@ -14,6 +14,7 @@ libappinternalprocs_sources = [
   'buffer-cmds.c',
   'channel-cmds.c',
   'context-cmds.c',
+  'curve-cmds.c',
   'debug-cmds.c',
   'display-cmds.c',
   'drawable-cmds.c',
