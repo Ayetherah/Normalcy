@@ -34,6 +34,7 @@
 #include <libgimp/gimpbuffer_pdb.h>
 #include <libgimp/gimpchannel_pdb.h>
 #include <libgimp/gimpcontext_pdb.h>
+#include <libgimp/gimpcurve_pdb.h>
 #include <libgimp/gimpdebug_pdb.h>
 #include <libgimp/gimpdisplay_pdb.h>
 #include <libgimp/gimpdrawable_pdb.h>
