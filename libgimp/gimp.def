@@ -761,6 +761,7 @@ EXPORTS
 	gimp_param_selection_get_type
 	gimp_param_spec_brush
 	gimp_param_spec_channel
+	gimp_param_spec_curve
 	gimp_param_spec_display
 	gimp_param_spec_display_none_allowed
 	gimp_param_spec_drawable
